@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views import generic
 
@@ -27,44 +28,44 @@ def index(request):
     return render(request, "kitchen_service/index.html", context=context)
 
 
-class DishTypeListView(generic.ListView):
+class DishTypeListView(LoginRequiredMixin, generic.ListView):
     model = DishType
     queryset = DishType.objects.order_by("name")
     template_name = "kitchen_service/dish_type_list.html"
     paginate_by = 5
 
 
-class CookListView(generic.ListView):
+class CookListView(LoginRequiredMixin, generic.ListView):
     model = Cook
     paginate_by = 5
     template_name = "kitchen_service/cook_list.html"
 
 
-class CooksDetailView(generic.DetailView):
+class CooksDetailView(LoginRequiredMixin, generic.DetailView):
     model = Cook
     paginate_by = 5
     template_name = "kitchen_service/cook_detail.html"
 
 
-class IngredientListView(generic.ListView):
+class IngredientListView(LoginRequiredMixin, generic.ListView):
     model = Ingredient
     paginate_by = 5
     template_name = "kitchen_service/ingredient_list.html"
 
 
-class IngredientDetailView(generic.DetailView):
+class IngredientDetailView(LoginRequiredMixin, generic.DetailView):
     model = Ingredient
     paginate_by = 5
     template_name = "kitchen_service/ingredient_detail.html"
 
 
-class DishListView(generic.ListView):
+class DishListView(LoginRequiredMixin, generic.ListView):
     model = Dish
     paginate_by = 5
     template_name = "kitchen_service/dish_list.html"
 
 
-class DishDetailView(generic.DetailView):
+class DishDetailView(LoginRequiredMixin, generic.DetailView):
     model = Dish
     paginate_by = 5
     template_name = "kitchen_service/dish_detail.html"
