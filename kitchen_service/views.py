@@ -1,6 +1,6 @@
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
 
 from kitchen_service.models import DishType, Cook, Ingredient, Dish
@@ -35,13 +35,51 @@ class DishTypeListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 5
 
 
+class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
+    model = DishType
+    fields = "__all__"
+    success_url = reverse_lazy("kitchen_service:dish-type-list")
+    template_name = "kitchen_service/dish_type_form.html"
+
+
+class DishTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = DishType
+    fields = "__all__"
+    success_url = reverse_lazy("kitchen_service:dish-type-list")
+    template_name = "kitchen_service/dish_type_form.html"
+
+
+class DishTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = DishType
+    success_url = reverse_lazy("kitchen_service:dish-type-list")
+    template_name = "kitchen_service/dish_type_confirm_delete.html"
+
+
 class CookListView(LoginRequiredMixin, generic.ListView):
     model = Cook
     paginate_by = 5
     template_name = "kitchen_service/cook_list.html"
 
 
-class CooksDetailView(LoginRequiredMixin, generic.DetailView):
+class CookCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Cook
+    fields = "__all__"
+    success_url = reverse_lazy("kitchen_service:cook-list")
+
+
+class CookUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Cook
+    fields = "__all__"
+    success_url = reverse_lazy("kitchen_service:cook-list")
+
+
+class CookDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Cook
+    success_url = reverse_lazy("kitchen_service:cook-list")
+    template_name = "kitchen_service/cook_confirm_delete.html"
+
+
+class CookDetailView(LoginRequiredMixin, generic.DetailView):
     model = Cook
     paginate_by = 5
     template_name = "kitchen_service/cook_detail.html"

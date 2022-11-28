@@ -18,7 +18,7 @@ class Cook(AbstractUser):
         verbose_name_plural = "cooks"
 
     def get_absolute_url(self):
-        return reverse("kitchen_service:cooks-detail", args=[str(self.id)])
+        return reverse("kitchen_service:cook-detail", args=[str(self.id)])
 
 
 class Ingredient(models.Model):
