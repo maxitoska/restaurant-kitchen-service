@@ -47,6 +47,12 @@ class IngredientListView(generic.ListView):
     template_name = "kitchen_service/ingredient_list.html"
 
 
+class IngredientDetailView(generic.DetailView):
+    model = Ingredient
+    paginate_by = 5
+    template_name = "kitchen_service/ingredient_detail.html"
+
+
 class DishListView(generic.ListView):
     model = Dish
     paginate_by = 5

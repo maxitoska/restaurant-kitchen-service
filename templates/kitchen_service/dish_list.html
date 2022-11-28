@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}<title>Dish List</title>{% endblock %}
+{% block content %}
+  <h1> Dishes: </h1>
+
+  {% if dish_list %}
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Dish_type</th>
+      </tr>
+    {% for dish in dish_list %}
+      <tr>
+        <td><a href="{{ dish.get_absolute_url }}">{{ dish.id }}</a></td>
+        <td>{{ dish.name }}</td>
+        <td>{{ dish.description }}</td>
+        <td>{{ dish.price }}</td>
+        <td>{{ dish.dish_type }}</td>
+      </tr>
+    {% endfor %}
+    </table>
+  {% else %}
+    <p>There are no cars</p>
+  {% endif %}
+{% endblock %}

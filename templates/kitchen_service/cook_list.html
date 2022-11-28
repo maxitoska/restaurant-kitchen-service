@@ -4,13 +4,24 @@
   <h1> Cooks:</h1>
 
   {% if cook_list %}
-    <ul>
-      {% for cook in cook_list %}
-        <li>
-          <a href="{{ cook.get_absolute_url}}">{{ cook.username }}</a>
-        </li>
-      {% endfor %}
-    </ul>
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>First_name</th>
+        <th>Last_name</th>
+        <th>Years_of_experience</th>
+      </tr>
+    {% for cook in cook_list %}
+      <tr>
+        <td>{{ cook.id }}</td>
+        <td><a href="{{ cook.get_absolute_url}}">{{ cook.username }}</a> </td>
+        <td>{{ cook.first_name }}</td>
+        <td>{{ cook.last_name }}</td>
+        <td>{{ cook.years_of_experience }}</td>
+      </tr>
+    {% endfor %}
+    </table>
   {% else %}
     <p>There are no cooks</p>
   {% endif %}

@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.urls import reverse
 
 
 class DishType(models.Model):
@@ -16,12 +17,18 @@ class Cook(AbstractUser):
         verbose_name = "cook"
         verbose_name_plural = "cooks"
 
+    def get_absolute_url(self):
+        return reverse("kitchen_service:cooks-detail", args=[str(self.id)])
+
 
 class Ingredient(models.Model):
     name = models.CharField(max_length=255, null=False)
 
     def __str__(self):
         return f"{self.name}"
+
+    def get_absolute_url(self):
+        return reverse("kitchen_service:ingredient-detail", args=[str(self.id)])
 
 
 class Dish(models.Model):
@@ -34,3 +41,6 @@ class Dish(models.Model):
 
     def __str__(self):
         return f"{self.name} {self.description} {self.price}$ {self.dish_type} {self.cooks} {self.ingredients}"
+
+    def get_absolute_url(self):
+        return reverse("kitchen_service:dish-detail", args=[str(self.id)])

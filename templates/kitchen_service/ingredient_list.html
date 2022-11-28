@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}}<title>Ingredients List</title>{% endblock %}
+{% block content %}
+  <h1> Ingredients:</h1>
+
+  {% if ingredient_list %}
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+      </tr>
+    {% for ingredient in ingredient_list %}
+      <tr>
+        <td>{{ ingredient.id }}</td>
+        <td><a href="{{ ingredient.get_absolute_url}}">{{ ingredient.name }}</a> </td>
+      </tr>
+    {% endfor %}
+    </table>
+  {% else %}
+    <p>There are no cooks</p>
+  {% endif %}
+{% endblock %}
