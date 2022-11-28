@@ -18,4 +18,6 @@ def index(request):
         "num_dishes": num_dishes,
     }
 
-#    return render(request, "kitchen_service/index.html", context=context)
+    return render(request, "kitchen_service/index.html", context=context)
+
+
