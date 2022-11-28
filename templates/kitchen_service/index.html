@@ -1,4 +1,6 @@
-<html lang="en">
+{% extends "base.html" %}
+
+{% block content %}
   <h1>Restaurant Kitchen Service</h1>
   <p>Welcome to the Greatest Restaurant</p>
   <p>Add your dishes quickly and conveniently</p>
@@ -9,4 +11,4 @@
     <li><strong>Ingredients:</strong> {{ num_ingredients }}</li>
     <li><strong>Dishes Types:</strong> {{ num_dish_types }}</li>
   </ul>
-</html>
+{% endblock %}
