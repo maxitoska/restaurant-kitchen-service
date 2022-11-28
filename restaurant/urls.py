@@ -14,60 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-
-from kitchen_service.views import (
-    index,
-    DishTypeListView,
-    CookListView,
-    CooksDetailView,
-    IngredientListView,
-    IngredientDetailView,
-    DishListView,
-    DishDetailView
-)
+from django.urls import path, include
 
 urlpatterns = [
-    path("", index, name="index"),
-    path(
-        "dish_types/",
-        DishTypeListView.as_view(),
-        name="dish-type-list",
-    ),
+    path("admin/", admin.site.urls),
+    path("", include("kitchen_service.urls", namespace="kitchen_service")),
 
-    path(
-        "cooks/",
-        CookListView.as_view(),
-        name="cook-list",
-    ),
-
-    path(
-        "cooks/<int:pk>/",
-        CooksDetailView.as_view(),
-        name="cooks-detail",
-    ),
-
-    path(
-        "ingredients/",
-        IngredientListView.as_view(),
-        name="ingredient-list",
-    ),
-
-    path(
-        "ingredient/<int:pk>/",
-        IngredientDetailView.as_view(),
-        name="ingredient-detail",
-    ),
-    path(
-        "dishes/",
-        DishListView.as_view(),
-        name="dish-list",
-    ),
-
-    path(
-        "dish/<int:pk>/",
-        DishDetailView.as_view(),
-        name="dish-detail",
-    ),
 ]
 
+app_name = "kitchen_service"

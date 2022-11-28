@@ -40,6 +40,7 @@ class CooksDetailView(generic.DetailView):
     paginate_by = 5
     template_name = "kitchen_service/cook_detail.html"
 
+
 class IngredientListView(generic.ListView):
     model = Ingredient
     paginate_by = 5
