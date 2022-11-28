@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.views import generic
 
@@ -12,11 +13,15 @@ def index(request):
     num_ingredients = Ingredient.objects.count()
     num_dishes = Dish.objects.count()
 
+    num_visits = request.session.get("num_visits", 0)
+    request.session["num_visits"] = num_visits + 1
+
     context = {
         "num_dish_types": num_dish_types,
         "num_cooks": num_cooks,
         "num_ingredients": num_ingredients,
         "num_dishes": num_dishes,
+        "num_visits": num_visits + 1,
     }
 
     return render(request, "kitchen_service/index.html", context=context)
