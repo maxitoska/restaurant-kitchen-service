@@ -40,7 +40,7 @@ class Dish(models.Model):
     ingredients = models.ManyToManyField(Ingredient, related_name="dishes_ingredient")
 
     def __str__(self):
-        return f"{self.name} {self.description} {self.price}$ {self.dish_type} {self.cooks} {self.ingredients}"
+        return f"{self.name} {self.description} {self.price} {self.dish_type} {self.cooks} {self.ingredients}"
 
     def get_absolute_url(self):
         return reverse("kitchen_service:dish-detail", args=[str(self.id)])
