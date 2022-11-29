@@ -1,7 +1,13 @@
 {% extends "base.html" %}
 {% block title %}<title>Dish List</title>{% endblock %}
 {% block content %}
-  <h1> Dishes: </h1>
+  <h1>
+    Dishes:
+    <a style="float: right"  href="{% url 'kitchen_service:dish-create' %}"
+       class="btn btn-primary link-to-page">
+      Create
+    </a>
+  </h1>
 
   {% if dish_list %}
     <table class="table">

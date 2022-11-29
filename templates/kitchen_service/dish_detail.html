@@ -1,7 +1,17 @@
 {% extends "base.html" %}
 {% block title %}<title>Dish Detail</title>{% endblock %}
 {% block content %}
-  <h3> <strong>Dish:</strong> {{ dish.name }}</h3>
+  <h3>
+    <strong>Dish:</strong> {{ dish.name }}
+    <a style="float: right"  href="{% url 'kitchen_service:dish-delete' pk=dish.id%}"
+      class="btn btn-danger link-to-page">
+      Delete
+    </a>
+    <a style="float: right"  href="{% url 'kitchen_service:dish-update' pk=dish.id %}"
+        class="btn btn-secondary link-to-page">
+        Update
+    </a>
+  </h3>
   <p><strong>Dish Type:</strong> {{ dish.dish_type}}</p>
   <br>
   <h3> <strong>Description :</strong></h3>
