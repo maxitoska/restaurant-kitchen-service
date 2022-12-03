@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Delete ingredient {{ ingredient.name }}?</h1>
+  <p><strong><em>All dishes in which this ingredient was used will lose it, Are you sure?</em></strong></p>
+  <form action="" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Yes, delete" class="btn btn-danger">
+  </form>
+{% endblock %}

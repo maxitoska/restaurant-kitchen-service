@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}<title>Ingredients Detail</title>{% endblock %}
+{% block content %}
+  {% if ingredient.dishes_ingredient.all %}
+    <h3>
+      <strong>What dishes are use {{ ingredient.name }} :</strong>
+      <a style="float: right"  href="{% url 'kitchen_service:ingredient-delete' pk=ingredient.id%}"
+         class="btn btn-danger link-to-page">
+        Delete
+      </a>
+      <a style="float: right"  href="{% url 'kitchen_service:ingredient-update' pk=ingredient.id %}"
+         class="btn btn-secondary link-to-page">
+        Update
+      </a>
+    </h3>
+    <ul>
+      {% for dish in ingredient.dishes_ingredient.all %}
+        <li>{{ dish.name }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+     <h3>There are no dishes with this ingredient</h3>
+  {% endif %}
+{% endblock %}

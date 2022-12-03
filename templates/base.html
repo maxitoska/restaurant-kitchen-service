@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% block title %}<title>Restaurant kitchen service</title>{% endblock %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+          crossorigin="anonymous">
+  <!-- Add additional CSS in static file -->
+  {% load static %}
+  <link rel="icon" href="{% static 'favicon-food.png'%}" type="image/png">
+	<link rel="shortcut icon" href="{% static 'favicon-food.ico'%}" type="img/x-icon">
+
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,800italic,700italic,600italic,400italic,300italic,800,700,600' rel='stylesheet' type='text/css'>
+
+
+  <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/font-awesome.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/responsive.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/magnific-popup.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/animate.css' %}" rel="stylesheet" type="text/css">
+
+  <script type="text/javascript" src="{% static 'js/jquery.1.8.3.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/jquery-scrolltofixed.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/jquery.isotope.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/wow.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/classie.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/magnific-popup.js' %}"></script>
+	<script src="{% static 'contactform/contactform.js' %}"></script>
+</head>
+
+<body>
+
+<header class="header" id="header">
+		<!--header-start-->
+		<div class="container">
+			<figure class="logo animated fadeInDown delay-07s">
+				<a href="#"><img src="{% static 'img/logo-food.png' %}" alt=""></a>
+			</figure>
+			<h1 class="animated fadeInDown delay-07s">Welcome To Restaurant Kitchen Service</h1>
+			<ul class="we-create animated fadeInUp delay-1s">
+				<li>We are a large corporation that loves to eat delicious food.</li>
+			</ul>
+			<a class="link animated fadeInUp delay-1s servicelink" href="#service">Get Started</a>
+		</div>
+	</header>
+	<!--header-end-->
+
+	<nav class="main-nav-outer" id="test">
+		<!--main-nav-start-->
+		<div class="container">
+			<ul class="main-nav">
+				{% if user.is_authenticated %}
+          <li>User: <a href="{{ user.get_absolute_url }}">{{ user.get_username }}</a></li>
+          <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+        {% else %}
+          <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+        {% endif %}
+        <li><a href="{% url "kitchen_service:index" %}">Home page</a></li>
+        <li><a href="{% url "kitchen_service:cook-list" %}">Cooks</a></li>
+        <li><a href="{% url "kitchen_service:dish-list" %}">Dishes</a></li>
+				<li><a href="{% url "kitchen_service:dish-type-list"%}">Dishes Types</a></li>
+        <li><a href="{% url "kitchen_service:ingredient-list"%}">Ingredients</a></li>
+			</ul>
+			<a class="res-nav_click" href="#"><i class="fa fa-bars"></i></a>
+		</div>
+	</nav>
+	<!--main-nav-end-->
+
+
+
+	<section class="main-section" id="service">
+		<!--main-section-start-->
+		<div class="container">
+			<h2>Kitchen Services</h2>
+      <br>
+      <h3><strong>Welcome to the Greatest Restaurant.</strong></h3>
+      <h5><em>Add your dishes quickly and conveniently.</em></h5>
+			<div class="row">
+				<div class="col-lg-4 col-sm-6 wow fadeInLeft delay-05s">
+					<div class="service-list">
+						<div class="service-list-col2">
+              <br>
+              <h3>Cooks</h3>
+							<p>Page will show you Usernames, Full names and Years of experience of our cooks.</p>
+						</div>
+					</div>
+					<div class="service-list">
+						<div class="service-list-col2">
+							<h3>Dishes</h3>
+							<p>Page will show you available dishes, information about them, price and also types.</p>
+						</div>
+					</div>
+					<div class="service-list">
+						<div class="service-list-col2">
+							<h3>Dishes Types</h3>
+							<p>This page , have a list of our available Dish Types.</p>
+						</div>
+					</div>
+					<div class="service-list">
+						<div class="service-list-col2">
+							<h3>Ingredients</h3>
+							<p>The last page, but the most important, is a list of available products for cooking.</p>
+						</div>
+					</div>
+				</div>
+				<figure class="col-lg-8 col-sm-6  text-right wow fadeInUp delay-02s">
+					<img src="{% static 'img/services-logo.png' %}" alt="">
+				</figure>
+
+			</div>
+		</div>
+	</section>
+	<!--main-section-end-->
+
+    <div class="base-content">
+
+      {% block content %}{% endblock %}
+
+      {% block pagination %}
+        {% include "includes/pagination.html" %}
+      {% endblock %}
+
+    </div>
+
+
+	<section class="main-section paddind" id="Portfolio">
+		<!--main-section-start-->
+		<div class="container">
+			<h2>Portfolio</h2>
+			<h6>The most popular dishes in our restaurant.</h6>
+			<div class="portfolioFilter">
+				<ul class="Portfolio-nav wow fadeIn delay-02s">
+					<li><a href="#" data-filter="*" class="current">Dishes</a></li>
+					<li><a href="#" data-filter=".branding">Desserts</a></li>
+					<li><a href="#" data-filter=".webdesign">Pasta</a></li>
+					<li><a href="#" data-filter=".printdesign">Soup</a></li>
+					<li><a href="#" data-filter=".photography">Snacks</a></li>
+				</ul>
+			</div>
+
+		</div>
+		<div class="portfolioContainer wow fadeInUp delay-04s">
+			<div class=" Portfolio-box printdesign">
+				<a href="{% static 'img/tomato-soup.jpg' %}"><img src="{% static 'img/tomato-soup.jpg'%}" alt=""></a>
+				<h3>Tomato Soup</h3>
+				<p>Soup</p>
+			</div>
+			<div class="Portfolio-box webdesign">
+				<a href="{% static 'img/lazania.jpg'%}"><img src="{% static 'img/lazania.jpg' %}" alt=""></a>
+				<h3>Lasagna</h3>
+				<p>Pasta</p>
+			</div>
+			<div class=" Portfolio-box branding">
+				<a href="{% static 'img/napoleon.jpeg'%}"><img src="{% static 'img/napoleon.jpeg'%}" alt=""></a>
+				<h3>Napoleon</h3>
+				<p>Dessert</p>
+			</div>
+			<div class=" Portfolio-box photography">
+				<a href="{% static 'img/bruskets.jpg'%}"><img src="{% static 'img/bruskets.jpg'%}" alt=""></a>
+				<h3>Bruschetta</h3>
+				<p>Snack</p>
+			</div>
+			<div class=" Portfolio-box branding">
+				<a href="{% static 'img/Cheesecake.jpg'%}"><img src="{% static 'img/Cheesecake.jpg'%}" alt=""></a>
+				<h3>Cheesecake</h3>
+				<p>Dessert</p>
+			</div>
+			<div class=" Portfolio-box photography">
+				<a href="{% static 'img/Varenyky.jpg'%}"><img src="{% static 'img/Varenyky.jpg'%}" alt=""></a>
+				<h3>Varenyky</h3>
+				<p>Snack</p>
+			</div>
+		</div>
+	</section>
+	<!--main-section-end-->
+
+	<!--c-logo-part-end-->
+	<section class="main-section team" id="team">
+		<!--main-section team-start-->
+		<div class="container">
+			<h2>team</h2>
+			<h6>Take a closer look into our amazing team.</h6>
+			<div class="team-leader-block clearfix">
+				<div class="team-leader-box">
+					<div class="team-leader wow fadeInDown delay-03s">
+						<div class="team-leader-shadow"><a href="#"></a></div>
+						<img src="{% static 'img/team-leader-pic1.jpg'%}" alt="">
+						<ul>
+							<li><a href="#" class="fa fa-twitter"></a></li>
+							<li><a href="#" class="fa fa-facebook"></a></li>
+							<li><a href="#" class="fa fa-pinterest"></a></li>
+							<li><a href="#" class="fa fa-google-plus"></a></li>
+						</ul>
+					</div>
+					<h3 class="wow fadeInDown delay-03s">Dima Shtefan</h3>
+					<span class="wow fadeInDown delay-03s">Chef</span>
+					<p class="wow fadeInDown delay-03s">Dmitry is the best experienced chef in his business, a fan of frying chicken in sweet and sour sauce.</p>
+				</div>
+				<div class="team-leader-box">
+					<div class="team-leader  wow fadeInDown delay-06s">
+						<div class="team-leader-shadow"><a href="#"></a></div>
+						<img src="{% static 'img/team-leader-pic2.jpg'%}" alt="">
+						<ul>
+							<li><a href="#" class="fa fa-twitter"></a></li>
+							<li><a href="#" class="fa fa-facebook"></a></li>
+							<li><a href="#" class="fa fa-pinterest"></a></li>
+							<li><a href="#" class="fa fa-google-plus"></a></li>
+						</ul>
+					</div>
+					<h3 class="wow fadeInDown delay-06s">Kirill Komnatskiy</h3>
+					<span class="wow fadeInDown delay-06s">Cook</span>
+					<p class="wow fadeInDown delay-06s">Kirill, a young talent in the field of cooking, is fond of molecular cuisine, loves cold cuisine.</p>
+				</div>
+				<div class="team-leader-box">
+					<div class="team-leader wow fadeInDown delay-09s">
+						<div class="team-leader-shadow"><a href="#"></a></div>
+						<img src="{% static 'img/team-leader-pic3.jpg'%}" alt="">
+						<ul>
+							<li><a href="#" class="fa fa-twitter"></a></li>
+							<li><a href="#" class="fa fa-facebook"></a></li>
+							<li><a href="#" class="fa fa-pinterest"></a></li>
+							<li><a href="#" class="fa fa-google-plus"></a></li>
+						</ul>
+					</div>
+					<h3 class="wow fadeInDown delay-09s">Rita Babyshkina</h3>
+					<span class="wow fadeInDown delay-09s">Сook</span>
+					<p class="wow fadeInDown delay-09s">Rita is a very cheerful person, one of the experienced cook. She likes to cook desserts.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--main-section team-end-->
+
+
+
+	<section class="business-talking">
+		<!--business-talking-start-->
+		<div class="container">
+			<h2>Let’s Talk Business.</h2>
+		</div>
+	</section>
+	<!--business-talking-end-->
+	<div class="container">
+		<section class="main-section contact" id="contact">
+
+			<div class="row">
+				<div class="col-lg-6 col-sm-7 wow fadeInLeft">
+					<div class="contact-info-box address clearfix">
+						<h3><i class=" icon-map-marker"></i>Address:</h3>
+						<span>Tarasa Shevchenko 34 <br>Kyiv, Ukraine, 04048.</span>
+					</div>
+					<div class="contact-info-box phone clearfix">
+						<h3><i class="fa fa-phone"></i>Phone:</h3>
+						<span>+380-63-038-83-08</span>
+					</div>
+					<div class="contact-info-box email clearfix">
+						<h3><i class="fa fa-pencil"></i>email:</h3>
+						<span>hello@restaurantkitchenservice.com</span>
+					</div>
+					<div class="contact-info-box hours clearfix">
+						<h3><i class="fa fa-clock-o"></i>Hours:</h3>
+						<span><strong>Monday - Thursday:</strong> 10am - 6pm<br><strong>Friday:</strong> People work on Fridays now?<br><strong>Saturday - Sunday:</strong> Best not to ask.</span>
+					</div>
+					<ul class="social-link">
+						<li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+						<li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+						<li class="pinterest"><a href="#"><i class="fa fa-pinterest"></i></a></li>
+						<li class="gplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+						<li class="dribbble"><a href="#"><i class="fa fa-dribbble"></i></a></li>
+					</ul>
+				</div>
+				<div class="col-lg-6 col-sm-5 wow fadeInUp delay-05s">
+					<div class="form">
+
+						<div id="sendmessage">Your message has been sent. Thank you!</div>
+						<div id="errormessage"></div>
+						<form action="" method="post" role="form" class="contactForm">
+							<div class="form-group">
+								<input type="text" name="name" class="form-control input-text" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+								<div class="validation"></div>
+							</div>
+							<div class="form-group">
+								<input type="email" class="form-control input-text" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+								<div class="validation"></div>
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control input-text" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+								<div class="validation"></div>
+							</div>
+							<div class="form-group">
+								<textarea class="form-control input-text text-area" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+								<div class="validation"></div>
+							</div>
+
+							<div class="text-center"><button type="submit" class="input-btn">Send Message</button></div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<footer class="footer">
+		<div class="container">
+			<div class="footer-logo"><a href="#"><img src="{% static 'img/logo-food.png'%}" alt=""></a></div>
+			<span class="copyright">&copy; Restaurant Service Theme. All Rights Reserved</span>
+			<div class="credits">
+				<!--
+          All the links in the footer should remain intact.
+          You can delete the links only if you purchased the pro version.
+          Licensing information: https://bootstrapmade.com/license/
+          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Knight
+        -->
+				Designed by <a href="https://github.com/maxitoska">Maksym Danylchuk</a>
+			</div>
+		</div>
+	</footer>
+
+
+	<script type="text/javascript">
+		$(document).ready(function(e) {
+
+			$('#test').scrollToFixed();
+			$('.res-nav_click').click(function() {
+				$('.main-nav').slideToggle();
+				return false
+
+			});
+
+      $('.Portfolio-box').magnificPopup({
+        delegate: 'a',
+        type: 'image'
+      });
+
+		});
+	</script>
+
+	<script>
+		wow = new WOW({
+			animateClass: 'animated',
+			offset: 100
+		});
+		wow.init();
+	</script>
+
+
+	<script type="text/javascript">
+		$(window).load(function() {
+
+			$('.main-nav li a, .servicelink').bind('click', function(event) {
+				var $anchor = $(this);
+
+				$('html, body').stop().animate({
+					scrollTop: $($anchor.attr('href')).offset().top - 102
+				}, 1500, 'easeInOutExpo');
+				/*
+				if you don't want to use the easing effects:
+				$('html, body').stop().animate({
+					scrollTop: $($anchor.attr('href')).offset().top
+				}, 1000);
+				*/
+				if ($(window).width() < 768) {
+					$('.main-nav').hide();
+				}
+				event.preventDefault();
+			});
+		})
+	</script>
+
+	<script type="text/javascript">
+		$(window).load(function() {
+
+
+			var $container = $('.portfolioContainer'),
+				$body = $('body'),
+				colW = 375,
+				columns = null;
+
+
+			$container.isotope({
+				// disable window resizing
+				resizable: true,
+				masonry: {
+					columnWidth: colW
+				}
+			});
+
+			$(window).smartresize(function() {
+				// check if columns has changed
+				var currentColumns = Math.floor(($body.width() - 30) / colW);
+				if (currentColumns !== columns) {
+					// set new column count
+					columns = currentColumns;
+					// apply width to container manually, then trigger relayout
+					$container.width(columns * colW)
+						.isotope('reLayout');
+				}
+
+			}).smartresize(); // trigger resize to set container width
+			$('.portfolioFilter a').click(function() {
+				$('.portfolioFilter .current').removeClass('current');
+				$(this).addClass('current');
+
+				var selector = $(this).attr('data-filter');
+				$container.isotope({
+
+					filter: selector,
+				});
+				return false;
+			});
+
+		});
+	</script>
+
+</body>
