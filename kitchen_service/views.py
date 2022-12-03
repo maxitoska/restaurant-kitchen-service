@@ -181,7 +181,7 @@ class DishListView(LoginRequiredMixin, generic.ListView):
     model = Dish
     paginate_by = 5
     template_name = "kitchen_service/dish_list.html"
-    queryset = Dish.objects.order_by("name")
+    queryset = Dish.objects.all().order_by("name")
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(DishListView, self).get_context_data(**kwargs)
