@@ -15,7 +15,10 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+<<<<<<< HEAD
 from django.urls import path
+=======
+>>>>>>> b4e754b31dfb46d303b5467979059986608b7caa
 from django.urls import path, include
 
 urlpatterns = [

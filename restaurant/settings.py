@@ -17,6 +17,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
+<<<<<<< HEAD
+=======
+# SECURITY WARNING: keep the secret key used in production secret!
+
+>>>>>>> b4e754b31dfb46d303b5467979059986608b7caa
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -65,9 +70,13 @@ TEMPLATES = [
     },
 ]
 
+<<<<<<< HEAD
 WSGI_APPLICATION = 'restaurant.wsgi.application'
+=======
+>>>>>>> b4e754b31dfb46d303b5467979059986608b7caa
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
+WSGI_APPLICATION = 'restaurant.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -106,7 +115,10 @@ AUTH_USER_MODEL = "kitchen_service.Cook"
 
 LANGUAGE_CODE = 'en-us'
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> b4e754b31dfb46d303b5467979059986608b7caa
 TIME_ZONE = 'Europe/Kiev'
 
 USE_I18N = True
