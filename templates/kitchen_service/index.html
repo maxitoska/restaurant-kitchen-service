@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1><strong>Restaurant Kitchen Service</strong></h1>
+  <p><strong>Welcome to the Greatest Restaurant</strong></p>
+  <p><strong><em>Add your dishes quickly and conveniently</em></strong></p>
+  <br>
+  <ul>
+    <li><strong>Cooks:</strong> {{ num_cooks }}</li>
+    <li><strong>Dishes:</strong> {{ num_dishes }}</li>
+    <li><strong>Ingredients:</strong> {{ num_ingredients }}</li>
+    <li><strong>Dishes Types:</strong> {{ num_dish_types }}</li>
+  </ul>
+  <br>
+   <p><strong>
+      You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}.
+   </strong></p>
+{% endblock %}

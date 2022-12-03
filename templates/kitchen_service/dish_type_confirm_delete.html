@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Delete dish type {{ dishtype.name }}?</h1>
+  <p><strong><em>All dishes with this dish type will be deleted also, Are you sure?</em></strong></p>
+  <form action="" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Yes, delete" class="btn btn-danger">
+  </form>
+{% endblock %}
