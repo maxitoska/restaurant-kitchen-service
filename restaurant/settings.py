@@ -12,26 +12,22 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 
+import dj_database_url
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = os.environ.get(
-    'DJANGO_SECRET_KEY',
-    'django-insecure-w_%-5&68ggdvafd7%k*cbi=6q(t*9+raps7iv)&xi9cm7m-1bl'
-)
-
+SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
-
+DEBUG = 'RENDER' not in os.environ
+# os.environ.get('DJANGO_DEBUG', '') != 'False'
 ALLOWED_HOSTS = ['127.0.0.1']
-
 
 # Application definition
 
@@ -80,7 +76,6 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 WSGI_APPLICATION = 'restaurant.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -91,6 +86,9 @@ DATABASES = {
     }
 }
 
+# dj-database-url
+db_from_env = dj_database_url.config(conn_max_age=500)  # DATABASE_URL
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -122,7 +120,6 @@ TIME_ZONE = 'Europe/Kiev'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
