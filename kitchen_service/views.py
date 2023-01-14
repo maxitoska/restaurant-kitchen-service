@@ -9,7 +9,7 @@ from kitchen_service.forms import (
     DishTypeSearchForm,
     IngredientSearchForm,
     DishSearchForm,
-    CookSearchForm
+    CookSearchForm,
 )
 from kitchen_service.models import DishType, Cook, Ingredient, Dish
 
@@ -47,9 +47,7 @@ class DishTypeListView(LoginRequiredMixin, generic.ListView):
 
         name = self.request.GET.get("name", "")
 
-        context["search_form"] = DishTypeSearchForm(initial={
-            "name": name
-        })
+        context["search_form"] = DishTypeSearchForm(initial={"name": name})
 
         return context
 
@@ -93,9 +91,7 @@ class CookListView(LoginRequiredMixin, generic.ListView):
 
         username = self.request.GET.get("username", "")
 
-        context["search_form"] = CookSearchForm(initial={
-            "username": username
-        })
+        context["search_form"] = CookSearchForm(initial={"username": username})
 
         return context
 
@@ -143,9 +139,7 @@ class IngredientListView(LoginRequiredMixin, generic.ListView):
 
         name = self.request.GET.get("name", "")
 
-        context["search_form"] = IngredientSearchForm(initial={
-            "name": name
-        })
+        context["search_form"] = IngredientSearchForm(initial={"name": name})
 
         return context
 
@@ -193,9 +187,7 @@ class DishListView(LoginRequiredMixin, generic.ListView):
 
         name = self.request.GET.get("name", "")
 
-        context["search_form"] = DishSearchForm(initial={
-            "name": name
-        })
+        context["search_form"] = DishSearchForm(initial={"name": name})
 
         return context
 

@@ -20,9 +20,9 @@ from django.urls import path, include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("api/", include("api.urls", namespace="api")),
     path("", include("kitchen_service.urls", namespace="kitchen_service")),
     path("accounts/", include("django.contrib.auth.urls")),
-
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 app_name = "kitchen_service"

@@ -12,6 +12,7 @@ class DishType(models.Model):
 
 class Cook(AbstractUser):
     years_of_experience = models.IntegerField()
+    # image = models.ImageField(upload_to=)
 
     class Meta:
         verbose_name = "cook"
